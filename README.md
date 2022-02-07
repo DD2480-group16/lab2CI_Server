@@ -5,7 +5,7 @@ Here is a tiny CI server skeleton implemented in Java for educational purposes. 
 
 We assume here that you have a standard Linux machine (eg with Ubuntu), with Java installed.
 
-We first checkout this repository:
+We first checkout this repository: change
 ```
 git clone https://github.com/monperrus/smallest-java-ci
 cd smallest-java-ci
