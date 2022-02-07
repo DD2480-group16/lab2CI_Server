@@ -39,7 +39,7 @@ java -cp .:servlet-api-2.5.jar:jetty-all-$JETTY_VERSION.jar ContinuousIntegratio
 # this gives you the public URL of your CI server to set in Github
 # copy-paste the forwarding URL "Forwarding                    http://8929b010.ngrok.io -> localhost:8080"
 # note that this url is short-lived, and is reset everytime you run ngrok
-./ngrok http 8080
+./ngrok http 8016
 
 ```
 
