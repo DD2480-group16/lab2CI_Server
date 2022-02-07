@@ -40,6 +40,14 @@
     </dependency>
   </dependencies>
 
+  <profiles>
+    <profile>
+        <id>testBuild</id>
+        <build>
+            <directory>testBuild</directory>
+        </build>
+    </profile>
+  </profiles>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
