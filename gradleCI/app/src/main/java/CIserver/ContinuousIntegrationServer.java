@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -45,32 +46,29 @@ public class ContinuousIntegrationServer extends AbstractHandler
             for(String line : body.split(",")){
                 if(line.contains("clone_url")){
                     repo = line.split(":")[1];
-                    repo = repo.substring(1, repo.length()-1);
+                    repo = repo.substring(14, repo.length()-1);
                     //TODO check if default_branch is correct
                     System.out.println(repo);
-                } else if(line.contains("default_branch")){
-                    branch = line.split(":")[1];
-                    branch = branch.substring(1, branch.length()-1);
+                } else if(line.contains("\"ref\":")){
+                    branch = line.split(":")[1].split("/")[2];
+                    branch = branch.substring(0, branch.length()-1);
                     System.out.println(branch);
                 }
             }
 
             if(repo != null && branch != null){
                 Runtime runtime = Runtime.getRuntime();
-                runCommand("cd", runtime);
-                String cloneOutput = runCommand("git clone " + repo + " tempRepo", runtime);
-                String lsOutput = runCommand("la", runtime);
-                System.out.println(lsOutput);
-                String cdOutput = runCommand("cd tempRepo", runtime);
+                String currentDir = System.getProperty("user.dir");
+                String cloneOutput = runCommand("git clone " + repo + " tempRepo", runtime, new File(currentDir));
                 String branchOutput = "Branch is Main.";
                 if (!branch.equals("main")) {
-                    branchOutput = runCommand("git checkout " + branch, runtime);
+                    branchOutput = runCommand("git checkout " + branch, runtime, new File(currentDir + "/tempRepo"));
                 }
 
                 // Last: cleanup
-                runCommand("rm -r tempRepo", runtime);
+                runCommand("rm -r tempRepo", runtime, new File(currentDir));
 
-                response.getWriter().println(cloneOutput + "\n" +  cdOutput + "\n" + branchOutput);
+                response.getWriter().println(cloneOutput + "\n" + branchOutput);
             }else{
                 // The POST request does not have the intended headers, something is wrong.
                 response.getWriter().println("You do not have the intended headers, something is wrong");
@@ -79,8 +77,6 @@ public class ContinuousIntegrationServer extends AbstractHandler
             // This is not a Webhook, so not a request we want to handle.
             response.getWriter().println("Whatever you are doing, it's not a webhook.");
         }
-
-
     }
 
 
@@ -99,10 +95,10 @@ public class ContinuousIntegrationServer extends AbstractHandler
         return sb.toString();
     }
 
-    public String runCommand(String command, Runtime runtime) {
+    public String runCommand(String command, Runtime runtime, File dir) {
         StringBuilder sb = new StringBuilder();
         try {
-            Process proc = runtime.exec(command);
+            Process proc = runtime.exec(command, null, dir);
             // Read the output
             BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
 
