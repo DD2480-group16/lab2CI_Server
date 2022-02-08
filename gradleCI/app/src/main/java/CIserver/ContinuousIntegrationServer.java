@@ -40,16 +40,18 @@ public class ContinuousIntegrationServer extends AbstractHandler
             String body = getBody(baseRequest);
             String repo = null;
             String branch = null;
-            System.out.println(body);
+
 
             for(String line : body.split(",")){
                 if(line.contains("full_name")){
                     repo = line.split(":")[1];
                     repo = repo.substring(1, repo.length());
                     //TODO check if default_branch is correct
+                    System.out.println(repo);
                 } else if(line.contains("default_branch")){
                     branch = line.split(":")[1];
                     branch = repo.substring(1, repo.length());
+                    System.out.println(branch);
                 }
             }
 
@@ -57,7 +59,11 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 Runtime runtime = Runtime.getRuntime();
                 String cloneOutput = runCommand("git clone git@github.com:" + repo + " tempRepo", runtime);
                 String cdOutput = runCommand("cd tempRepo", runtime);
-                String branchOutput = runCommand("git checkout " + branch, runtime);
+                if (branch != "main") {
+                    String branchOutput = runCommand("git checkout " + branch, runtime);
+                } else {
+                    String branchOutput = "Brnach is Main.";
+                }
 
 
 
