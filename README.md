@@ -8,7 +8,7 @@ We assume here that you have a standard Linux machine (eg with Ubuntu), with Jav
 We first checkout this repository: change, This is just a change to test the server testest another test
 ```
 git clone https://github.com/monperrus/smallest-java-ci
-cd smallest-java-ci changed a little for a test test again
+cd smallest-java-ci changed a little for a test test again test
 ```
 
 We then download the required dependencies:
