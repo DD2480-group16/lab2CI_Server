@@ -32,7 +32,13 @@ public class ContinuousIntegrationServer extends AbstractHandler
         // for example
         // 1st clone your repository
         // 2nd compile the code
-
+        Notifications.send(
+            "dd2480group16@gmail.com",
+            "6N9vpRzqZtY6rK9",
+            "teltcou@gmail.com",
+            "Server Statut",
+            "Build complete"
+          );
         response.getWriter().println("CI job done");
     }
  
