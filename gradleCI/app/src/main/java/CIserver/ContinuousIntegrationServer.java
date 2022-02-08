@@ -58,13 +58,13 @@ public class ContinuousIntegrationServer extends AbstractHandler
             if(repo != null && branch != null){
                 Runtime runtime = Runtime.getRuntime();
                 String cloneOutput = runCommand("git clone git@github.com:" + repo + " tempRepo", runtime);
+                String lsOutput = runCommand("la", runtime);
+                System.out.println(lsOutput);
                 String cdOutput = runCommand("cd tempRepo", runtime);
-                String branchOutput = "Brnach is Main.";
+                String branchOutput = "Branch is Main.";
                 if (branch != "main") {
                     branchOutput = runCommand("git checkout " + branch, runtime);
                 }
-
-
 
                 // Last: cleanup
                 runCommand("rm -r tempRepo", runtime);
@@ -76,7 +76,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
             }
         }else{
             // This is not a Webhook, so not a request we want to handle.
-            response.getWriter().println("Whatever you are doing, it´s not a webhook.");
+            response.getWriter().println("Whatever you are doing, it's not a webhook.");
         }
 
 
@@ -103,11 +103,16 @@ public class ContinuousIntegrationServer extends AbstractHandler
         try {
             Process proc = runtime.exec(command);
             // Read the output
-            BufferedReader reader =
-                    new BufferedReader(new InputStreamReader(proc.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
             String line = "";
             while((line = reader.readLine()) != null) {
                 sb.append(line);
+            }
+
+            while ((line = stdError.readLine()) != null) {
+                System.out.println(line);
             }
 
             proc.waitFor();
