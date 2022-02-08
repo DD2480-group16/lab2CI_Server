@@ -68,7 +68,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
             // This is not a Webhook, so not a request we want to handle.
         }
 
-        response.getWriter().println("CI job done\n" + cloneOutput + "\n" +  cdOutput + "\n" + branchOutput);
+        response.getWriter().println(cloneOutput + "\n" +  cdOutput + "\n" + branchOutput);
     }
 
 
