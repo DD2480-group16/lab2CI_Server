@@ -43,7 +43,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
 
             for(String line : body.split(",")){
-                if(line.contains("full_name")){
+                if(line.contains("clone_url")){
                     repo = line.split(":")[1];
                     repo = repo.substring(1, repo.length()-1);
                     //TODO check if default_branch is correct
@@ -57,7 +57,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
             if(repo != null && branch != null){
                 Runtime runtime = Runtime.getRuntime();
-                String cloneOutput = runCommand("git clone git@github.com:" + repo + " tempRepo", runtime);
+                String cloneOutput = runCommand("git clone " + repo + " tempRepo", runtime);
                 String lsOutput = runCommand("la", runtime);
                 System.out.println(lsOutput);
                 String cdOutput = runCommand("cd tempRepo", runtime);
