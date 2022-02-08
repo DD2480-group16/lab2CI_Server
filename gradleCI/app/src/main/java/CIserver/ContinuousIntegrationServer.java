@@ -29,6 +29,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
         baseRequest.setHandled(true);
 
         System.out.println(target);
+        System.out.println(baseRequest.getMethod());
 
         // here you do all the continuous integration tasks
         // for example
@@ -39,6 +40,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
             String body = getBody(baseRequest);
             String repo = null;
             String branch = null;
+            System.out.println(body);
 
             for(String line : body.split(",")){
                 if(line.contains("full_name")){
@@ -61,14 +63,18 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
                 // Last: cleanup
                 runCommand("rm -r tempRepo", runtime);
+
+                response.getWriter().println(cloneOutput + "\n" +  cdOutput + "\n" + branchOutput);
             }else{
                 // The POST request does not have the intended headers, something is wrong.
+                response.getWriter().println("You do not have the intended headers, something is wrong");
             }
         }else{
             // This is not a Webhook, so not a request we want to handle.
+            response.getWriter().println("Whatever you are doing, it´s not a webhook.");
         }
 
-        response.getWriter().println("CI job done");
+
     }
 
 
