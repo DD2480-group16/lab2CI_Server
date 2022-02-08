@@ -50,7 +50,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
                     System.out.println(repo);
                 } else if(line.contains("default_branch")){
                     branch = line.split(":")[1];
-                    branch = repo.substring(1, repo.length()-1);
+                    branch = branch.substring(1, branch.length()-1);
                     System.out.println(branch);
                 }
             }
