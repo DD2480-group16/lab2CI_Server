@@ -61,14 +61,18 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
                 // Last: cleanup
                 runCommand("rm -r tempRepo", runtime);
+
+                response.getWriter().println(cloneOutput + "\n" +  cdOutput + "\n" + branchOutput);
             }else{
                 // The POST request does not have the intended headers, something is wrong.
+                response.getWriter().println("You do not have the intended headers, something is wrong");
             }
         }else{
             // This is not a Webhook, so not a request we want to handle.
+            response.getWriter().println("Whatever you are doing, it´s not a webhook.");
         }
 
-        response.getWriter().println(cloneOutput + "\n" +  cdOutput + "\n" + branchOutput);
+
     }
 
 
