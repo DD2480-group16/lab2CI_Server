@@ -61,7 +61,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 String cdOutput = runCommand("cd tempRepo", runtime);
                 String branchOutput = "Brnach is Main.";
                 if (branch != "main") {
-                    String branchOutput = runCommand("git checkout " + branch, runtime);
+                    branchOutput = runCommand("git checkout " + branch, runtime);
                 }
 
 
