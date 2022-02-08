@@ -45,8 +45,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
             for(String line : body.split(",")){
                 if(line.contains("clone_url")){
-                    repo = line.split(":")[1];
-                    repo = repo.substring(14, repo.length()-1);
+                    repo = line.substring(13, line.length()-1);
                     //TODO check if default_branch is correct
                     System.out.println(repo);
                 } else if(line.contains("\"ref\":")){
@@ -54,6 +53,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
                     branch = branch.substring(0, branch.length()-1);
                     System.out.println(branch);
                 }
+
             }
 
             if(repo != null && branch != null){

@@ -43,7 +43,7 @@ java -cp .:servlet-api-2.5.jar:jetty-all-$JETTY_VERSION.jar ContinuousIntegratio
 
 ```
 
-We configure our Github repository: testtesttest
+We configure our Github repository: testtesttesttest
 
 * go to `Settings >> Webhooks`, click on `Add webhook`.
 * paste the forwarding URL (eg `http://8929b010.ngrok.io`) in field `Payload URL`) and send click on `Add webhook`. In the simplest setting, nothing more is required.
@@ -62,7 +62,7 @@ We shutdown everything:
 
 * `Ctrl-C` in the ngrok terminal window
 * `Ctrl-C` in the ngrok java window
-* delete the webhook in the webhook configuration page.
+* delete the webhook in the webhook configuration page.testtesttesttest
 
 Notes:
-* by default, Github delivers a `push` JSON payloard, documented here: <https://developer.github.com/v3/activity/events/types/#pushevent>, this information can be used to get interesting information about the commit that has just been pushed. :)
+* by default, Github delivers a `push` JSON payloard, documented here: <https://developer.github.com/v3/activity/events/types/#pushevent>, this information can be used to get interesting information about the commit that has just been pushed. 
