@@ -45,12 +45,12 @@ public class ContinuousIntegrationServer extends AbstractHandler
             for(String line : body.split(",")){
                 if(line.contains("full_name")){
                     repo = line.split(":")[1];
-                    repo = repo.substring(1, repo.length());
+                    repo = repo.substring(1, repo.length()-1);
                     //TODO check if default_branch is correct
                     System.out.println(repo);
                 } else if(line.contains("default_branch")){
                     branch = line.split(":")[1];
-                    branch = repo.substring(1, repo.length());
+                    branch = repo.substring(1, repo.length()-1);
                     System.out.println(branch);
                 }
             }
