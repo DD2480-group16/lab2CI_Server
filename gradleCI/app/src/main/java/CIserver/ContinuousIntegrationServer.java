@@ -42,12 +42,14 @@ public class ContinuousIntegrationServer extends AbstractHandler
             String branch = null;
             System.out.println(body);
 
-            for(String line : body.split("\n")){
+            for(String line : body.split(",")){
                 if(line.contains("full_name")){
-                    repo = line.split(":")[1].split(",")[0];
+                    repo = line.split(":")[1];
+                    repo = repo.substring(1, repo.length());
                     //TODO check if default_branch is correct
                 } else if(line.contains("default_branch")){
-                    branch = line.split(":")[1].split(",")[0];
+                    branch = line.split(":")[1];
+                    branch = repo.substring(1, repo.length());
                 }
             }
 
@@ -82,7 +84,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
         try {
             String line;
             while ((line = reader.readLine()) != null) {
-                sb.append(line).append('\n');
+                sb.append(line);
             }
         } finally {
             reader.close();
