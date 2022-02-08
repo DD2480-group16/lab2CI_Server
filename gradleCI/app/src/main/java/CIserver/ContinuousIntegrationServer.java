@@ -48,11 +48,12 @@ public class ContinuousIntegrationServer extends AbstractHandler
                     repo = repo.substring(1, repo.length()-1);
                     //TODO check if default_branch is correct
                     System.out.println(repo);
-                } else if(line.contains("default_branch")){
-                    branch = line.split(":")[1];
-                    branch = branch.substring(1, branch.length()-1);
+                } else if(line.contains("\"ref\":")){
+                    branch = line.split(":")[1].split("/")[2];
+                    branch = branch.substring(0, branch.length()-1);
                     System.out.println(branch);
                 }
+
             }
 
             if(repo != null && branch != null){
