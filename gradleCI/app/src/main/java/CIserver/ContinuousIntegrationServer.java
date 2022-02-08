@@ -57,12 +57,13 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
             if(repo != null && branch != null){
                 Runtime runtime = Runtime.getRuntime();
+                runCommand("cd", runtime);
                 String cloneOutput = runCommand("git clone " + repo + " tempRepo", runtime);
                 String lsOutput = runCommand("la", runtime);
                 System.out.println(lsOutput);
                 String cdOutput = runCommand("cd tempRepo", runtime);
                 String branchOutput = "Branch is Main.";
-                if (branch != "main") {
+                if (!branch.equals("main")) {
                     branchOutput = runCommand("git checkout " + branch, runtime);
                 }
 
