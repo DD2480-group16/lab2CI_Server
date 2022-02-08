@@ -43,7 +43,7 @@ java -cp .:servlet-api-2.5.jar:jetty-all-$JETTY_VERSION.jar ContinuousIntegratio
 
 ```
 
-We configure our Github repository: testtesttest
+We configure our Github repository: testtesttesttest
 
 * go to `Settings >> Webhooks`, click on `Add webhook`.
 * paste the forwarding URL (eg `http://8929b010.ngrok.io`) in field `Payload URL`) and send click on `Add webhook`. In the simplest setting, nothing more is required.
