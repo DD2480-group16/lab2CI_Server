@@ -5,7 +5,8 @@ import java.util.Properties;
 import javax.mail.*;  
 
 public class Notifications {
-    public static void send(String from,String pwd,String to,String sub,String msg){
+    public static boolean send(String from,String pwd,String to,String sub,String msg){
+        boolean test = false;
         //Properties
         Properties p = new Properties();
         p.put("mail.smtp.host", "smtp.gmail.com");
@@ -29,8 +30,10 @@ public class Notifications {
           //send Message
           Transport.send(m);
           System.out.println("Mail send");
+          test = true;
         } catch (MessagingException e) {
           e.printStackTrace();
         }
+    return test;
       }
 }
