@@ -69,6 +69,10 @@ public class ContinuousIntegrationServer extends AbstractHandler
         }
 
         response.getWriter().println("CI job done");
+        response.getwriter().println(cloneOutput);
+        response.getwriter().println(cdOutput);
+        response.getwriter().println(branchOutput);
+
     }
 
 
