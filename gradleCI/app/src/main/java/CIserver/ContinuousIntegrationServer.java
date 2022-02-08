@@ -40,6 +40,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
             String body = getBody(baseRequest);
             String repo = null;
             String branch = null;
+            System.out.pirntln(body);
 
             for(String line : body.split("\n")){
                 if(line.contains("full_name")){
