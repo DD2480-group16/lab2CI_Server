@@ -60,10 +60,11 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 System.out.println("\n\n\n INITIALIZING NEW BUILD TEST!----------------------");
                 System.out.println("Repo:\t\t" + repo);
                 System.out.println("Branch:\t\t" + branch);
-                System.out.println("current directory:\t" + currentDir.toString());
+
                 Runtime runtime = Runtime.getRuntime();
                 String currentDir = System.getProperty("user.dir");
-
+                System.out.println("current directory:\t" + currentDir.toString());
+                
                 String cloneOutput = runCommand("git clone " + repo + " tempRepo", runtime, new File(currentDir));
                 String branchOutput = "Branch is Main.";
                 if (!branch.equals("main")) {
