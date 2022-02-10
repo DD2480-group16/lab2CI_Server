@@ -11,4 +11,11 @@ public class AppTest {
         App classUnderTest = new App();
         assertNotNull("app should have a greeting", classUnderTest.getGreeting());
     }
+
+    /**
+    @Test public void thisShouldFail() {
+        int variable = 2;
+        assertTrue(1 == variable);
+    }
+    */
 }
