@@ -66,10 +66,18 @@ public class ContinuousIntegrationServer extends AbstractHandler
                     branchOutput = runCommand("git checkout " + branch, runtime, new File(currentDir + "/tempRepo"));
                 }
 
+                String buildOutput = runCommand("./gradlew build", runtime, new File(currentDir+"/tempRepo/gradleCI"));
+                String testOutput = runCommand("./gradlew test", runtime, new File(currentDir+"/tempRepo/gradleCI"));
+
                 // Last: cleanup
                 runCommand("rm -r tempRepo", runtime, new File(currentDir));
 
-                response.getWriter().println(cloneOutput + "\n" + branchOutput);
+                PrintWriter writer = response.getWriter();
+                writer.println(cloneOutput);
+                writer.println(branchOutput);
+                writer.println(buildOutput);
+                writer.println(testOutput);
+
             }else{
                 // The POST request does not have the intended headers, something is wrong.
                 response.getWriter().println("You do not have the intended headers, something is wrong");
