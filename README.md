@@ -45,3 +45,6 @@ To shutdown everything:
 #### Malin Svenberg
 
 ## Way of Working, SEMAT:
+
+We decided to use similar organisation as first lab, using a slack channel to organise and github to manage the project by creating issues, solving them on separated branches and adding them to main branch with pull request. 
+On the state of our group in regard to the states described in "Kernel and Language for Software Engineering Method (Essence), p51-52", we think we are in the Formed state. All the team members have met both virtually and in person and are able to coordinate the work in order to perform the demanded task. The communication is well organised with defined mechanism (mainly on slack to coordinate work and meetings). Maybe the team has not reach the Collaborating state yet because the exchange are at the moment almost only work related.
