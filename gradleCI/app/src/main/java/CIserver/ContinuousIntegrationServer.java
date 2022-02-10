@@ -58,13 +58,13 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
             if(repo != null && branch != null){
                 System.out.println("\n\nINITIALIZING NEW BUILD TEST!--------------------------------");
-                System.out.println("Repo:\t\t\t\t" + repo);
-                System.out.println("Branch:\t\t\t\t" + branch);
+                System.out.println("Repo:\t\t\t" + repo);
+                System.out.println("Branch:\t\t\t" + branch);
 
                 Runtime runtime = Runtime.getRuntime();
                 String currentDir = System.getProperty("user.dir");
                 System.out.println("current directory:\t" + currentDir.toString());
-                
+                System.out.println("\nInitializing Build...");
                 String cloneOutput = runCommand("git clone " + repo + " tempRepo", runtime, new File(currentDir));
                 String branchOutput = "Branch is Main.";
                 if (!branch.equals("main")) {
@@ -82,9 +82,9 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 boolean build_sccuessful = buildOutput.contains("BUILD SUCCESSFUL");
                 boolean contains_syntax_error = buildOutput.contains("Build failed with an exception.");
 
-                System.out.println("\n" + (build_sccuessful? "BUILD SUCCESSFUL! \n" : "BUILD FAILED! \n"));
+                System.out.println((build_sccuessful? "BUILD SUCCESSFUL! \n" : "BUILD FAILED! \n"));
                 if (!build_sccuessful){
-                        System.out.println((contains_syntax_error? "Syntax error! \n" : "Test(s) failed! \n"));
+                        System.out.println((contains_syntax_error? "REASON: Syntax error! \n" : "REASON: Test(s) failed! \n"));
                 }
                 System.out.println("BUILD OUTPUT:-----------------------------------------------\n");
                 System.out.print(buildOutput);
