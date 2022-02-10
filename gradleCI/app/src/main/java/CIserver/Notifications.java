@@ -34,6 +34,7 @@ public class Notifications {
         } catch (MessagingException e) {
           e.printStackTrace();
         }
+    p.clear();
     return test;
       }
 }

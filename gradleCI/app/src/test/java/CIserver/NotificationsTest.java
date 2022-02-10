@@ -11,7 +11,7 @@ public class NotificationsTest {
             "6N9vpRzqZtY6rK9",
             "teltcou@gmail.com",
             "Server Statut",
-            "Build complete"
+            "Test 1"
           ));
     }
 
@@ -22,7 +22,7 @@ public class NotificationsTest {
             "6N9vpRzqZtY6rK",
             "teltcou@gmail.com",
             "Server Statut",
-            "Build complete"
+            "Test 2"
           ));
     }
 
@@ -33,7 +33,7 @@ public class NotificationsTest {
             "6N9vpRzqZtY6rK9",
             "teltcou@gmail.com",
             "Server Statut",
-            "test"
+            "Test 3"
           ));
     }
 }
