@@ -73,9 +73,9 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 String buildOutput = runCommand("./gradlew build", runtime, new File(currentDir+"/tempRepo/gradleCI"));
                 String testOutput = runCommand("./gradlew test", runtime, new File(currentDir+"/tempRepo/gradleCI"));
 
-                System.out.println("BUILD OUTPUT:---------------------------------\n");
+                System.out.println("\n\nBUILD OUTPUT:---------------------------------");
                 System.out.print(buildOutput);
-                System.out.println("TEST OUTPUT:----------------------------------\n");
+                System.out.println("\n\nTEST OUTPUT:----------------------------------");
                 System.out.print(testOutput);
 
                 // Last: cleanup
