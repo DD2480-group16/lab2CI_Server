@@ -95,7 +95,6 @@ public class ContinuousIntegrationServer extends AbstractHandler
             response.getWriter().println("Whatever you are doing, it's not a webhook.");
         }
     }
-    asd = 23
 
     public String getBody(Request request) throws IOException{
         StringBuilder sb = new StringBuilder();
