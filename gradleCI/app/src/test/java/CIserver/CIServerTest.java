@@ -28,12 +28,4 @@ public class CIServerTest {
 
         assertEquals("", result);
     }
-
-    @Test
-    public void runCommandCanRunCommand(){
-        ContinuousIntegrationServer ci = new ContinuousIntegrationServer();
-        String result = ci.runCommand("rm test123", null, new File(System.getProperty("user.dir")));
-
-        assertEquals("rm: cannot remove 'test123': No such file or directory", result);
-    }
 }
