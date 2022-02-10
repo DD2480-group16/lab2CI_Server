@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+import java.io.PrintWriter;
 
 /** 
  Skeleton of a ContinuousIntegrationServer which acts as webhook
