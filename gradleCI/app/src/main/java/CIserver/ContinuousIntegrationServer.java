@@ -57,7 +57,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
             }
 
             if(repo != null && branch != null){
-                System.out.println("\n\n\n INITIALIZING NEW BUILD TEST!----------------------\n")
+                System.out.println("\n\n\n INITIALIZING NEW BUILD TEST!----------------------\n");
                 System.out.println("\t Repo: " + repo);
                 System.out.println("\t Branch: " + branch);
 
