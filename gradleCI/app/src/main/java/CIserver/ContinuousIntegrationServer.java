@@ -57,9 +57,9 @@ public class ContinuousIntegrationServer extends AbstractHandler
             }
 
             if(repo != null && branch != null){
-                System.out.println("\n\n\n INITIALIZING NEW BUILD TEST!----------------------");
-                System.out.println("Repo:\t\t" + repo);
-                System.out.println("Branch:\t\t" + branch);
+                System.out.println("\n\nINITIALIZING NEW BUILD TEST!--------------------------------");
+                System.out.println("Repo:\t\t\t\t" + repo);
+                System.out.println("Branch:\t\t\t\t" + branch);
 
                 Runtime runtime = Runtime.getRuntime();
                 String currentDir = System.getProperty("user.dir");
@@ -86,9 +86,9 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 if (!build_sccuessful){
                         System.out.println((contains_syntax_error? "Syntax error! \n" : "Test(s) failed! \n"));
                 }
-                System.out.println("BUILD OUTPUT:---------------------------------\n");
+                System.out.println("BUILD OUTPUT:-----------------------------------------------\n");
                 System.out.print(buildOutput);
-                System.out.println("----------------------------------------------\n");
+                System.out.println("------------------------------------------------------------\n");
 
                 // Last: cleanup
                 runCommand("rm -r tempRepo", runtime, new File(currentDir));
