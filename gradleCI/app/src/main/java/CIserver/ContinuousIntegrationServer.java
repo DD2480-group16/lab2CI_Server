@@ -68,7 +68,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 }
 
                 PrintWriter writer = response.getWriter();
-                writer.print(cloneOutput + "\n" + branchOutput + "\n" + "Running test... (See email for results"));
+                writer.print(cloneOutput + "\n" + branchOutput + "\n" + "Running test... (See email for results");
 
                 String buildOutput = runCommand("./gradlew build", runtime, new File(currentDir+"/tempRepo/gradleCI"));
                 String testOutput = runCommand("./gradlew test", runtime, new File(currentDir+"/tempRepo/gradleCI"));
