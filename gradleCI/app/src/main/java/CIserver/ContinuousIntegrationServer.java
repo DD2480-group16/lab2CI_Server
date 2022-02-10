@@ -30,7 +30,6 @@ public class ContinuousIntegrationServer extends AbstractHandler
         response.setStatus(HttpServletResponse.SC_OK);
         baseRequest.setHandled(true);
 
-        System.out.println(target);
         System.out.println(baseRequest.getMethod());
 
         // here you do all the continuous integration tasks
@@ -70,15 +69,19 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
 
                 PrintWriter writer = response.getWriter();
-                writer.print(cloneOutput + "\n" + branchOutput + "\n" + "Running test... (See email for results");
+                writer.print(cloneOutput + "\n" + branchOutput + "\n" + "Initializing build... (See e-mail for results.");
 
                 String buildOutput = runCommand("./gradlew build", runtime, new File(currentDir+"/tempRepo/gradleCI"));
                 //String testOutput = runCommand("./gradlew test", runtime, new File(currentDir+"/tempRepo/gradleCI"));
 
                 boolean build_sccuessful = buildOutput.contains("BUILD SUCCESSFUL");
+                boolean contains_syntax_error = buildOutput.contains("Build failed with an exception.");
 
-                System.out.println("\n\n" + (build_sccuessful? "BUILD SUCCESSFUL! \n" : "BUILD FAILED! \n"));
-                System.out.println("\n\nBUILD OUTPUT:---------------------------------");
+                System.out.println("\n" + (build_sccuessful? "BUILD SUCCESSFUL! \n" : "BUILD FAILED! \n"));
+                if !(build_sccuessful){
+                        System.out.println((contains_syntax_error? "Syntax error! \n" : "Test(s) failed! \n"));
+                }
+                System.out.println("BUILD OUTPUT:---------------------------------\n");
                 System.out.print(buildOutput);
 
                 // Last: cleanup
@@ -88,7 +91,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
             }else{
                 // The POST request does not have the intended headers, something is wrong.
-                response.getWriter().println("You do not have the intended headers, something is wrong");
+                response.getWriter().println("You do not have the intended headers, something is wrong.");
             }
         }else{
             // This is not a Webhook, so not a request we want to handle.
@@ -122,10 +125,10 @@ public class ContinuousIntegrationServer extends AbstractHandler
             String line = "";
 
             while ((line = stdError.readLine()) != null) {
-                sb.append(line);
+                sb.append(line + "\n");
             }
             while((line = reader.readLine()) != null) {
-                sb.append(line);
+                sb.append(line + "\n");
             }
 
 
