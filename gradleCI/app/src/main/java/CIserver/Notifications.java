@@ -8,16 +8,16 @@ public class Notifications {
     public static boolean send(String from,String pwd,String to,String sub,String msg){
         boolean test = false;
         //Properties
-        Properties p = new Properties();
+        Properties p = new Properties(); // Initialize property
         p.put("mail.smtp.host", "smtp.gmail.com");
         p.put("mail.smtp.socketFactory.port", "465");
         p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         p.put("mail.smtp.auth", "true");
         p.put("mail.smtp.port", "465");
-        //Session
+        //Create a Session
         Session s = Session.getDefaultInstance(p,
           new javax.mail.Authenticator() {
-          protected PasswordAuthentication getPasswordAuthentication() {
+          protected PasswordAuthentication getPasswordAuthentication() {// check mail adress and password
              return new PasswordAuthentication(from, pwd);
           }
         });
