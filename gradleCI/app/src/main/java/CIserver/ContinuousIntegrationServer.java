@@ -78,7 +78,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 boolean contains_syntax_error = buildOutput.contains("Build failed with an exception.");
 
                 System.out.println("\n" + (build_sccuessful? "BUILD SUCCESSFUL! \n" : "BUILD FAILED! \n"));
-                if !(build_sccuessful){
+                if (!build_sccuessful){
                         System.out.println((contains_syntax_error? "Syntax error! \n" : "Test(s) failed! \n"));
                 }
                 System.out.println("BUILD OUTPUT:---------------------------------\n");
