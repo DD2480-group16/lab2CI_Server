@@ -66,6 +66,9 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 if (!branch.equals("main")) {
                     branchOutput = runCommand("git checkout " + branch, runtime, new File(currentDir + "/tempRepo"));
                 }
+                
+                PrintWriter writer = response.getWriter();
+                writer.print(cloneOutput + "\n" + branchOutput + "\n" + Running test... ("See email for results"));
 
                 String buildOutput = runCommand("./gradlew build", runtime, new File(currentDir+"/tempRepo/gradleCI"));
                 String testOutput = runCommand("./gradlew test", runtime, new File(currentDir+"/tempRepo/gradleCI"));
@@ -73,11 +76,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 // Last: cleanup
                 runCommand("rm -r tempRepo", runtime, new File(currentDir));
 
-                PrintWriter writer = response.getWriter();
-                writer.println(cloneOutput);
-                writer.println(branchOutput);
-                writer.println(buildOutput);
-                writer.println(testOutput);
+
 
             }else{
                 // The POST request does not have the intended headers, something is wrong.
