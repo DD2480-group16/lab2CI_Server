@@ -30,7 +30,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
         response.setStatus(HttpServletResponse.SC_OK);
         baseRequest.setHandled(true);
 
-        System.out.println(baseRequest.getMethod());
+        //System.out.println(baseRequest.getMethod());
 
         // here you do all the continuous integration tasks
         // for example
@@ -57,6 +57,10 @@ public class ContinuousIntegrationServer extends AbstractHandler
             }
 
             if(repo != null && branch != null){
+                System.out.println("\n\n\n INITIALIZING NEW BUILD TEST!----------------------\n")
+                System.out.println("\t Repo: " + repo);
+                System.out.println("\t Branch: " + branch);
+
                 Runtime runtime = Runtime.getRuntime();
                 String currentDir = System.getProperty("user.dir");
                 System.out.println("currentDir = " + currentDir.toString());
@@ -83,6 +87,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 }
                 System.out.println("BUILD OUTPUT:---------------------------------\n");
                 System.out.print(buildOutput);
+                System.out.println("----------------------------------------------\n");
 
                 // Last: cleanup
                 runCommand("rm -r tempRepo", runtime, new File(currentDir));
@@ -91,10 +96,12 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
             }else{
                 // The POST request does not have the intended headers, something is wrong.
+                System.out.println("\n RECIEVED MALFORMED POST REQUEST. (Discarded)\n")
                 response.getWriter().println("You do not have the intended headers, something is wrong.");
             }
         }else{
             // This is not a Webhook, so not a request we want to handle.
+            System.out.println("\n RECIEVED MALFORMED HTTP REQUEST. (Discarded)\n")
             response.getWriter().println("Whatever you are doing, it's not a webhook.");
         }
     }
