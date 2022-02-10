@@ -67,12 +67,15 @@ public class ContinuousIntegrationServer extends AbstractHandler
                     branchOutput = runCommand("git checkout " + branch, runtime, new File(currentDir + "/tempRepo"));
                 }
 
+                boolean build_sccuessful = buildOutput.contains("BUILD SUCCESSFUL");
+
                 PrintWriter writer = response.getWriter();
                 writer.print(cloneOutput + "\n" + branchOutput + "\n" + "Running test... (See email for results");
 
                 String buildOutput = runCommand("./gradlew build", runtime, new File(currentDir+"/tempRepo/gradleCI"));
                 //String testOutput = runCommand("./gradlew test", runtime, new File(currentDir+"/tempRepo/gradleCI"));
 
+                System.out.println("\n\n" + build_sccuessful? "BUILD SUCCESSFUL! \n" : "BUILD FAILED! \n");
                 System.out.println("\n\nBUILD OUTPUT:---------------------------------");
                 System.out.print(buildOutput);
 
