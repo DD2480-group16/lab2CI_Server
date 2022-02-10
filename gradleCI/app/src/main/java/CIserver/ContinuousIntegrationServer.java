@@ -76,8 +76,8 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 //String testOutput = runCommand("./gradlew test", runtime, new File(currentDir+"/tempRepo/gradleCI"));
 
                 boolean build_sccuessful = buildOutput.contains("BUILD SUCCESSFUL");
-                
-                System.out.println("\n\n" + build_sccuessful? "BUILD SUCCESSFUL! \n" : "BUILD FAILED! \n");
+
+                System.out.println("\n\n" + (build_sccuessful? "BUILD SUCCESSFUL! \n" : "BUILD FAILED! \n"));
                 System.out.println("\n\nBUILD OUTPUT:---------------------------------");
                 System.out.print(buildOutput);
 
