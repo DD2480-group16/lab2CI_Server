@@ -121,13 +121,14 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
             BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
             String line = "";
+
+            while ((line = stdError.readLine()) != null) {
+                sb.append(line);
+            }
             while((line = reader.readLine()) != null) {
                 sb.append(line);
             }
 
-            while ((line = stdError.readLine()) != null) {
-                System.out.println(line);
-            }
 
             proc.waitFor();
         } catch (Exception e) {
