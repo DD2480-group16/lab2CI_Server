@@ -9,11 +9,11 @@ Note : this server is intended to run on Unix systems and may not work on Window
 
 ## How to run the server:
 1. Clone this repository into the directory of your choice.
-2. Run gradlew.bat inside the /gradleCI folder.
+2. Run `gradlew.bat` inside the /gradleCI folder.
 3. Install Ngrok in the repository root folder  
-4. Go into /gradleCI and run ./gradlew build    
-5. Then run ./gradlew run
-6. Run .ngrok http 8016 from repository root
+4. Go into /gradleCI and run `./gradlew build`    
+5. Then run `./gradlew run`
+6. Run `.ngrok http 8016` from repository root
 7. Copy the Ngrok http address and add it to your Github webhook.
    
 The server should work.
@@ -42,11 +42,11 @@ Parsing the request body, runCommand(), and cloning and branching of the repo in
 
 
 #### Nicolas Wittmann
-
+Creating the readme skeleton, adding the description on how to run the programm and the way of working.
 
 #### Malin Svenberg
 
 ## Way of Working, SEMAT:
 
 We decided to use similar organisation as first lab, using a slack channel to organise and github to manage the project by creating issues, solving them on separated branches and adding them to main branch with pull request. 
-On the state of our group in regard to the states described in "Kernel and Language for Software Engineering Method (Essence), p51-52", we think we are in the Formed state. All the team members have met both virtually and in person and are able to coordinate the work in order to perform the demanded task. The communication is well organised with defined mechanism (mainly on slack to coordinate work and meetings). Maybe the team has not reach the Collaborating state yet because the exchange are at the moment almost only work related.
+On the state of our group in regard to the states described in "Kernel and Language for Software Engineering Method (Essence), p51-52", we think we are in the Formed state. All the team members have met both virtually and in person and are able to coordinate the work in order to perform the demanded task. The communication is well organised with defined mechanism (mainly on slack to coordinate work and meetings). Maybe the team has not reach the Collaborating state yet because the exchanges are at the moment almost only work related.
