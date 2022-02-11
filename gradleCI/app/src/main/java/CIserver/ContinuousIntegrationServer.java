@@ -66,16 +66,16 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 //String testOutput = runCommand("./gradlew test", runtime, new File(currentDir+"/tempRepo/gradleCI"));
 
                 boolean build_successful = buildOutput.contains("BUILD SUCCESSFUL");
-                boolean contains_syntax_error = buildOutput.contains("Build failed with an exception.");
+                boolean failing_tests = buildOutput.contains("There were failing tests.");
                 StringBuilder msg = new StringBuilder();
 
                 msg.append((build_successful? "BUILD SUCCESSFUL! \n" : "BUILD FAILED! \n"));
                 
                 if (!build_successful){
-                    msg.append((contains_syntax_error? "REASON: Syntax error! \n" : "REASON: Test(s) failed! \n"));
+                    msg.append((failing_tests? "REASON: Test(s) failed! \n" : "REASON: Syntax error! \n"));
                 }
 
-                msg.append("BUILD OUTPUT:-----------------------------------------------\n");
+                msg.append("\nBUILD OUTPUT:\n-----------------------------------------------\n");
                 msg.append(buildOutput);
                 msg.append("------------------------------------------------------------\n");
                 System.out.println(msg.toString());
