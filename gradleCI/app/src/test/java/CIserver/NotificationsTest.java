@@ -2,6 +2,8 @@ package CIserver;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.util.Properties;  
+import javax.mail.*;  
 
 public class NotificationsTest {
     @Test 
@@ -10,7 +12,7 @@ public class NotificationsTest {
             "dd2480group16@gmail.com",
             "6N9vpRzqZtY6rK9",
             "dd2480group16@gmail.com",
-            "Server Statut",
+            "Test 1",
             "Test 1"
           ));
     }
@@ -20,7 +22,7 @@ public class NotificationsTest {
             "dd2480group16@gmail.com",
             "6N9vpRzqZtY6rK",
             "dd2480group16@gmail.com",
-            "Server Statut",
+            "Test 2",
             "Test 2"
           ));
     }
@@ -31,7 +33,7 @@ public class NotificationsTest {
             "dd2480group@gmail.com",
             "6N9vpRzqZtY6rK9",
             "dd2480group16@gmail.com",
-            "Server Statut",
+            "Test 3",
             "Test 3"
           ));
     }

@@ -19,7 +19,7 @@ public class Notifications {
         p.put("mail.smtp.host", "smtp.gmail.com");
         p.put("mail.smtp.port", "587");
         //Create a Session
-        Session s = Session.getDefaultInstance(p,
+        Session s = Session.getInstance(p,
           new javax.mail.Authenticator() {
           protected PasswordAuthentication getPasswordAuthentication() {// check mail adress and password
              return new PasswordAuthentication(from, pwd);
