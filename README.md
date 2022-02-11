@@ -34,7 +34,7 @@ To shutdown everything:
 #### Thomas:
 
 #### Agnes:
-
+Parsing the request body, runCommand(), and cloning and branching of the repo into testRepo for building and testing. Wrote tests for helper functions.
 
 #### Fredrik Svanholm:
 
