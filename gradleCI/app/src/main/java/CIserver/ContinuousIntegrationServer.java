@@ -78,6 +78,22 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 // Cleanup
                 runCommand("rm -r tempRepo", runtime, new File(currentDir));
 
+                // Send notification
+                String msg;
+                if(build_sccuessful){
+                    msg = "BUILD SUCCESSFUL!";
+                }
+                else{
+                    msg = "BUILD FAILED!";
+                }
+                Notifications.send(// Create an email
+                    "dd2480group16@gmail.com", //Sender mail
+                    "6N9vpRzqZtY6rK9",// sender password
+                    "teltcou@gmail.com",// Receiver mail
+                    "Server Statut", // Mail header
+                    msg // Mail message
+                );
+
             }else{
                 // The POST request body does not have the intended headers, something is wrong.
                 System.out.println("\n RECIEVED MALFORMED POST REQUEST. (Discarded)\n");
@@ -119,7 +135,6 @@ public class ContinuousIntegrationServer extends AbstractHandler
      */
     public String runCommand(String command, Runtime runtime, File dir) {
         StringBuilder sb = new StringBuilder();
-        System.out.println("hejsan");
         try {
             Process proc = runtime.exec(command, null, dir);
             // Read the output
