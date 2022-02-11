@@ -25,9 +25,11 @@ To shutdown everything:
 * delete the webhook in the webhook configuration page.
 
 ## How compilation has been implemented and unit-tested:
+Compilation is implemented by running commands in the command line from the code. From the XML data sent with the webhook when a commit occurs, the branch and repo are extracted. The repo is cloned into a folder named tempRepo. In the tempRepo folder the branch is changed to the branch the commit occured. Then the project is built with gradle. 
 
 
 ## How test execution has been implemented and unit-tested.
+Test execution is implemented by building the already cloned repo with gradle. Since this will run all the associated tests for the project. 
 
 
 ## Statement of contributions:
