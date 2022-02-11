@@ -29,7 +29,7 @@ public class Notifications {
           m.setText(msg);
           //send Message
           Transport.send(m);
-          System.out.println("Mail send");
+          System.out.println("Mail sent");
           test = true;
         }catch (AuthenticationFailedException e) {
           e.printStackTrace();
