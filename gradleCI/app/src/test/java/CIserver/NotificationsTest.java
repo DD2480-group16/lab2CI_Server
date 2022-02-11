@@ -9,7 +9,7 @@ public class NotificationsTest {
         assertTrue(Notifications.send(
             "dd2480group16@gmail.com",
             "6N9vpRzqZtY6rK9",
-            "teltcou@gmail.com",
+            "dd2480group16@gmail.com",
             "Server Statut",
             "Test 1"
           ));
@@ -19,7 +19,7 @@ public class NotificationsTest {
         assertFalse(Notifications.send(
             "dd2480group16@gmail.com",
             "6N9vpRzqZtY6rK",
-            "teltcou@gmail.com",
+            "dd2480group16@gmail.com",
             "Server Statut",
             "Test 2"
           ));
@@ -30,7 +30,7 @@ public class NotificationsTest {
         assertFalse(Notifications.send(
             "dd2480group@gmail.com",
             "6N9vpRzqZtY6rK9",
-            "teltcou@gmail.com",
+            "dd2480group16@gmail.com",
             "Server Statut",
             "Test 3"
           ));

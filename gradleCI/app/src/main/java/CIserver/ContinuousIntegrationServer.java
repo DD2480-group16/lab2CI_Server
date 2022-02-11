@@ -59,39 +59,37 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
                 PrintWriter writer = response.getWriter();
                 writer.print("Successfully cloned repo." + "\n" + "Now in branch " + branch + "\n" 
-                    + "Initializing build... (See e-mail for results.");
+                    + "Initializing build... See e-mail for results.");
+                writer.close();
 
                 String buildOutput = runCommand("./gradlew build", runtime, new File(currentDir+"/tempRepo/gradleCI"));
                 //String testOutput = runCommand("./gradlew test", runtime, new File(currentDir+"/tempRepo/gradleCI"));
 
-                boolean build_sccuessful = buildOutput.contains("BUILD SUCCESSFUL");
+                boolean build_successful = buildOutput.contains("BUILD SUCCESSFUL");
                 boolean contains_syntax_error = buildOutput.contains("Build failed with an exception.");
+                StringBuilder msg = new StringBuilder();
 
-                System.out.println((build_sccuessful? "BUILD SUCCESSFUL! \n" : "\nBUILD FAILED!"));
-                if (!build_sccuessful){
-                        System.out.println((contains_syntax_error? "REASON: Syntax error! \n" : "REASON: Test(s) failed! \n"));
+                msg.append((build_successful? "BUILD SUCCESSFUL! \n" : "BUILD FAILED! \n"));
+                
+                if (!build_successful){
+                    msg.append((contains_syntax_error? "REASON: Syntax error! \n" : "REASON: Test(s) failed! \n"));
                 }
-                System.out.println("BUILD OUTPUT:-----------------------------------------------\n");
-                System.out.print(buildOutput);
-                System.out.println("------------------------------------------------------------\n");
+
+                msg.append("BUILD OUTPUT:-----------------------------------------------\n");
+                msg.append(buildOutput);
+                msg.append("------------------------------------------------------------\n");
+                System.out.println(msg.toString());
 
                 // Cleanup
                 runCommand("rm -r tempRepo", runtime, new File(currentDir));
 
                 // Send notification
-                String msg;
-                if(build_sccuessful){
-                    msg = "BUILD SUCCESSFUL!";
-                }
-                else{
-                    msg = "BUILD FAILED!";
-                }
                 Notifications.send(// Create an email
                     "dd2480group16@gmail.com", //Sender mail
                     "6N9vpRzqZtY6rK9",// sender password
-                    "teltcou@gmail.com",// Receiver mail
+                    "dd2480group16@gmail.com",// Receiver mail
                     "Server Statut", // Mail header
-                    msg // Mail message
+                    msg.toString() // Mail message
                 );
 
             }else{
