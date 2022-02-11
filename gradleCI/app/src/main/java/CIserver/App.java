@@ -18,11 +18,4 @@ public class App {
         return "Hello World!";
     }
 
-    public static void main(String[] args) throws Exception {
-        System.out.println(new App().getGreeting());
-        Server server = new Server(8016);
-        server.setHandler(new ContinuousIntegrationServer());
-        server.start();
-        server.join();
-    }
 }
