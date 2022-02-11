@@ -29,7 +29,7 @@ Compilation is implemented by running commands in the command line from the code
 
 
 ## How test execution has been implemented and unit-tested.
-Test execution is implemented by building the already cloned repo with gradle. Since this will run all the associated tests for the project. 
+Test execution is implemented by building the already cloned repo with gradle. Since this will run all the associated tests for the project. We have tests for the helper functions and email notification that will run on each webhook call.
 
 
 ## Statement of contributions:
