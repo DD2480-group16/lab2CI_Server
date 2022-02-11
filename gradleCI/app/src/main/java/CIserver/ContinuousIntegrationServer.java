@@ -88,7 +88,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
                     "dd2480group16@gmail.com", //Sender mail
                     "6N9vpRzqZtY6rK9",// sender password
                     "dd2480group16@gmail.com",// Receiver mail
-                    "Server Statut", // Mail header
+                    "Server Status", // Mail header
                     msg.toString() // Mail message
                 );
 
