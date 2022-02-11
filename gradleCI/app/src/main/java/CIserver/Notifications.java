@@ -24,6 +24,7 @@ public class Notifications {
         //Create message
         try {
           MimeMessage m = new MimeMessage(s);
+	  m.setFrom(new InternetAddress(from));
           m.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
           m.setSubject(sub);
           m.setText(msg);
