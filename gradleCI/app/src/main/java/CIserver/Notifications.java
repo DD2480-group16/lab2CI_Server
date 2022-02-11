@@ -31,9 +31,13 @@ public class Notifications {
           Transport.send(m);
           System.out.println("Mail send");
           test = true;
+        }catch (AuthenticationFailedException e) {
+          e.printStackTrace();
+          test = false;
         } catch (MessagingException e) {
           e.printStackTrace();
-        }
+          test = false;
+        } 
     p.clear();
     return test;
       }
