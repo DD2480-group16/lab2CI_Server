@@ -67,7 +67,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
                 boolean build_successful = buildOutput.contains("BUILD SUCCESSFUL");
                 boolean failing_tests = buildOutput.contains("There were failing tests.");
-                
+
                 StringBuilder msg = new StringBuilder();
                 msg.append((build_successful? "BUILD SUCCESSFUL! \n" : "BUILD FAILED! \n"));
                 

@@ -9,11 +9,15 @@ public class Notifications {
         boolean test = false;
         //Properties
         Properties p = new Properties(); // Initialize property
-        p.put("mail.smtp.host", "smtp.gmail.com");
-        p.put("mail.smtp.socketFactory.port", "465");
-        p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        // p.put("mail.smtp.host", "smtp.gmail.com");
+        // p.put("mail.smtp.socketFactory.port", "465");
+        // p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        // p.put("mail.smtp.auth", "true");
+        // p.put("mail.smtp.port", "465");
         p.put("mail.smtp.auth", "true");
-        p.put("mail.smtp.port", "465");
+        p.put("mail.smtp.starttls.enable", "true");
+        p.put("mail.smtp.host", "smtp.gmail.com");
+        p.put("mail.smtp.port", "587");
         //Create a Session
         Session s = Session.getDefaultInstance(p,
           new javax.mail.Authenticator() {
@@ -24,7 +28,7 @@ public class Notifications {
         //Create message
         try {
           MimeMessage m = new MimeMessage(s);
-	  m.setFrom(new InternetAddress(from));
+          m.setFrom(new InternetAddress(from));
           m.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
           m.setSubject(sub);
           m.setText(msg);
