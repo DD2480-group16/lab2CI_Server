@@ -39,7 +39,7 @@ Test execution is implemented by building the already cloned repo with gradle. S
 Parsing the request body, runCommand(), and cloning and branching of the repo into testRepo for building and testing. Wrote tests for helper functions.
 
 #### Fredrik Svanholm:
-
+Made the server properly run, and test builds after cloning the branch and formatted comprehensive server output based on the results.
 
 #### Nicolas Wittmann
 Creating the readme skeleton, adding the description on how to run the programm and the way of working.
