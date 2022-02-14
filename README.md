@@ -34,6 +34,7 @@ Test execution is implemented by building the already cloned repo with gradle. S
 
 ## Statement of contributions:
 #### Thomas:
+Creating function for the Notification part, i.e. send an email to give the server status. Wrote tests for notifications functions.
 
 #### Agnes:
 Parsing the request body, runCommand(), and cloning and branching of the repo into testRepo for building and testing. Wrote tests for helper functions.
