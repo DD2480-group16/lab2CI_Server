@@ -16,30 +16,34 @@ public class NotificationsTest {
 
         Properties p = new Properties();
         p.put("mail.smtp.host", "smtp.gmail.com");
-        p.put("mail.smtp.socketFactory.port", "465");
+        p.put("mail.smtp.socketFactory.port", "587");
         p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        p.put("mail.smtp.port", "465");
+        p.put("mail.smtp.port", "587");
 
         Session session = Session.getDefaultInstance(p);
 
         Store store = session.getStore("imaps");
-        store.connect("smtp.gmail.com", "dd2480group16@gmail.com","6N9vpRzqZtY6rK9");
+        store.connect("smtp.gmail.com", "2022dd2480group16@gmail.com","6N9vpRzqZtY6rK2");
 
         Folder inbox = store.getFolder("inbox");
-        inbox.open(Folder.READ_WRITE);
+        inbox.open(Folder.READ_ONLY);
 
         Message[] mails = inbox.getMessages();
         int before = inbox.getMessageCount();
+        inbox.close(true);
+        System.out.println("Tjenare "+ before);
 
-        sender.send("dd2480group16@gmail.com",
-        "6N9vpRzqZtY6rK8",
-        "dd2480group16@gmail.com",
+        sender.send("2022dd2480group16@gmail.com",
+        "6N9vpRzqZtY6rK2",
+        "2022dd2480group16@gmail.com",
         "Test 1",
         "Test 1");
 
-
+        inbox = store.getFolder("inbox");
+        inbox.open(Folder.READ_WRITE);
         mails = inbox.getMessages();
         int after = inbox.getMessageCount();
+        System.out.println("Tjenare2 "+ after);
 
         assertTrue(after-before >= 1);
         if(after-before == 1){
@@ -65,9 +69,9 @@ public class NotificationsTest {
     @Test
     public void testNotif_2() {// With the wrong password
         assertFalse(Notifications.send(
-            "dd2480group16@gmail.com",
+            "2022dd2480group16@gmail.com",
             "6N9vpRzqZtY6rK",
-            "dd2480group16@gmail.com",
+            "2022dd2480group16@gmail.com",
             "Test 2",
             "Test 2"
           ));
@@ -76,9 +80,9 @@ public class NotificationsTest {
     @Test
     public void testNotif_3() {// With the wrong email adress
         assertFalse(Notifications.send(
-            "dd2480group@gmail.com",
-            "6N9vpRzqZtY6rK8",
-            "dd2480group16@gmail.com",
+            "2022dd2480group@gmail.com",
+            "6N9vpRzqZtY6rK2",
+            "2022dd2480group16@gmail.com",
             "Test 3",
             "Test 3"
           ));

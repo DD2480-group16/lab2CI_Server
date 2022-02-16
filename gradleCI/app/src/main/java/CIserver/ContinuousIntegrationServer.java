@@ -95,9 +95,9 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
                 // Send notification
                 Notifications.send(// Create an email
-                    "dd2480group16@gmail.com", //Sender mail
-                    "6N9vpRzqZtY6rK8",// sender password
-                    "dd2480group16@gmail.com",// Receiver mail
+                    "2022dd2480group16@gmail.com", //Sender mail
+                    "6N9vpRzqZtY6rK2",// sender password
+                    "2022dd2480group16@gmail.com",// Receiver mail
                     "Server Status", // Mail header
                     msg.toString() // Mail message
                 );
