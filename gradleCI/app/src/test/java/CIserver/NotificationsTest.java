@@ -32,7 +32,7 @@ public class NotificationsTest {
         int before = inbox.getMessageCount();
 
         sender.send("dd2480group16@gmail.com",
-        "6N9vpRzqZtY6rK9",
+        "6N9vpRzqZtY6rK8",
         "dd2480group16@gmail.com",
         "Test 1",
         "Test 1");
@@ -77,7 +77,7 @@ public class NotificationsTest {
     public void testNotif_3() {// With the wrong email adress
         assertFalse(Notifications.send(
             "dd2480group@gmail.com",
-            "6N9vpRzqZtY6rK9",
+            "6N9vpRzqZtY6rK8",
             "dd2480group16@gmail.com",
             "Test 3",
             "Test 3"

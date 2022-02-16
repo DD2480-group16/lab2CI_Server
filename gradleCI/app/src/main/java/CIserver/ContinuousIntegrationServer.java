@@ -13,6 +13,16 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import java.io.PrintWriter;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
+import java.sql.Timestamp;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+
 
 
 public class ContinuousIntegrationServer extends AbstractHandler
@@ -20,7 +30,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
     public void handle(String target,
                        Request baseRequest,
                        HttpServletRequest request,
-                       HttpServletResponse response) 
+                       HttpServletResponse response)
         throws IOException, ServletException
     {
         response.setContentType("text/html;charset=utf-8");
@@ -58,7 +68,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 }
 
                 PrintWriter writer = response.getWriter();
-                writer.print("Successfully cloned repo." + "\n" + "Now in branch " + branch + "\n" 
+                writer.print("Successfully cloned repo." + "\n" + "Now in branch " + branch + "\n"
                     + "Initializing build... See e-mail for results.");
                 writer.close();
 
@@ -70,7 +80,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
                 StringBuilder msg = new StringBuilder();
                 msg.append((build_successful? "BUILD SUCCESSFUL! \n" : "BUILD FAILED! \n"));
-                
+
                 if (!build_successful){
                     msg.append((failing_tests? "REASON: Test(s) failed! \n" : "REASON: Syntax error! \n"));
                 }
@@ -86,11 +96,14 @@ public class ContinuousIntegrationServer extends AbstractHandler
                 // Send notification
                 Notifications.send(// Create an email
                     "dd2480group16@gmail.com", //Sender mail
-                    "6N9vpRzqZtY6rK9",// sender password
+                    "6N9vpRzqZtY6rK8",// sender password
                     "dd2480group16@gmail.com",// Receiver mail
                     "Server Status", // Mail header
                     msg.toString() // Mail message
                 );
+
+                //Save build
+                createBuildFile(msg, repo, branch, currentDir);
 
             }else{
                 // The POST request body does not have the intended headers, something is wrong.
@@ -104,8 +117,43 @@ public class ContinuousIntegrationServer extends AbstractHandler
         }
     }
 
+    /** Creates a html file for the timestamp of the build, writes the build output to it. Adds a link to the new page in index.html.
+     *
+     * @param output The Stringbuilder containing the build output.
+     * @param repo The repo that the commit occured in.
+     * @param branch The branch the commit occured in.
+     * @param currentDir The current path where the server is run.
+     */
+    public void createBuildFile(StringBuilder output, String repo, String branch, String currentDir){
+      Timestamp time = new Timestamp(System.currentTimeMillis());
+      String timestamp = time.toString().replace(" ", "-");
+      timestamp = timestamp.toString().replace(":", "-");
+      File file = new File(currentDir+"/../../../oldBuilds/build"+timestamp+".html");
+      PrintWriter bw;
+      boolean result;
+      try{
+        result = file.createNewFile();
+        bw = new PrintWriter(new FileWriter(file));
+        bw.print("<!DOCTYPE html><html><head><title>Build "+time+"</title></head><body><div style='white-space: pre-wrap;'>");
+        bw.println("<h1>Build "+ time+"</h1>");
+        bw.println("<b>Repo: "+repo+" </b>");
+        bw.println("<b>Branch: "+branch+" </b>");
+        bw.println("<b>Timestamp: "+ time +" </b><br>");
+        bw.println(output.toString());
+        bw.print("\n\n</div><a href=index.html>Back</a></body></html>");
+        bw.close();
+        Path path = Paths.get(currentDir+"/../../../oldBuilds/index.html");
+        List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+        lines.add(7, "<a href='build"+timestamp+".html'>Build: "+time+"</a><br>");
+        Files.write(path, lines, StandardCharsets.UTF_8);
+      }
+      catch(IOException e){
+        e.printStackTrace();
+      }
+    }
+
     /** Reads a body from a BufferedReader and returns the String representation.
-     * 
+     *
      * @param reader The reader holding the body
      * @return String representation of body, without newlines.
      * @throws IOException
@@ -125,7 +173,7 @@ public class ContinuousIntegrationServer extends AbstractHandler
     }
 
     /** Runs a command and returns the output, error or not.
-     *  
+     *
      * @param command The command to run
      * @param runtime The runtime that the command is run in
      * @param dir   The directory in which the command is run
@@ -156,13 +204,13 @@ public class ContinuousIntegrationServer extends AbstractHandler
 
         return sb.toString();
     }
- 
- 
+
+
     // used to start the CI server in command line
     public static void main(String[] args) throws Exception
     {
         Server server = new Server(8016);
-        server.setHandler(new ContinuousIntegrationServer()); 
+        server.setHandler(new ContinuousIntegrationServer());
         server.start();
         server.join();
     }
