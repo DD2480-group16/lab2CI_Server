@@ -31,7 +31,7 @@ public class NotificationsTest {
         Message[] mails = inbox.getMessages();
         int before = inbox.getMessageCount();
         inbox.close(true);
-        System.out.println("Tjenare "+ before);
+   
 
         sender.send("2022dd2480group16@gmail.com",
         "6N9vpRzqZtY6rK2",
@@ -43,7 +43,7 @@ public class NotificationsTest {
         inbox.open(Folder.READ_WRITE);
         mails = inbox.getMessages();
         int after = inbox.getMessageCount();
-        System.out.println("Tjenare2 "+ after);
+ 
 
         assertTrue(after-before >= 1);
         if(after-before == 1){
