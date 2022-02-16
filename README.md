@@ -3,7 +3,7 @@
 DT2480-Continuous integration is a project consisting in implementing a continuous integration server.  
 
 This CI server is meant to be called as a webhook by github. It uses Jetty for the HTTP part, Graddle to build the project and Ngrok for the communication part. 
-The server is able to build a github project after some changes were commited, run a set of test and communicate results of the test to the programmer by email.
+The server is able to build a github project after some changes were commited, run a set of test and communicate results of the test to the programmer by email. The output for the builds are stored in a seperate html file locally on the server, these can then be accessed with a url. 
 
 Note : this server is intended to run on Unix systems and may not work on Windows.
 
@@ -23,6 +23,9 @@ To shutdown everything:
 * `Ctrl-C` in the ngrok terminal window
 * `Ctrl-C` in the ngrok java window
 * delete the webhook in the webhook configuration page.
+
+## Url for list of old builds
+[https://5405-98-128-228-124.ngrok.io](https://5405-98-128-228-124.ngrok.io)
 
 ## How compilation has been implemented and unit-tested:
 Compilation is implemented by running commands in the command line from the code. From the XML data sent with the webhook when a commit occurs, the branch and repo are extracted. The repo is cloned into a folder named tempRepo. In the tempRepo folder the branch is changed to the branch the commit occured. Then the project is built with gradle. 
