@@ -46,7 +46,7 @@ Made the server properly run, and test builds after cloning the branch and forma
 Creating the readme skeleton, adding the description on how to run the programm and the way of working.
 
 #### Malin Svenberg
-Project lead, was responsible for checking pull requests and merging them with main. Made the server into a gradle project. test
+Project lead, was responsible for checking pull requests and merging them with main. Made the server into a gradle project. 
 
 ## Way of Working, SEMAT:
 
