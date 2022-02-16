@@ -26,7 +26,6 @@ dependencies {
     implementation 'org.eclipse.jetty:jetty-server:7.0.2.v20100331'
     implementation 'javax.servlet:servlet-api:2.5'
     implementation 'com.sun.mail:javax.mail:1.6.2'
-
 }
 
 application {
